@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Adicionei o link para a fonte poppins black 900 -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:900&display=swap" rel="stylesheet">
+
+  <title>Tempo restante em 2023</title>
+  <style>
+    body {
+      text-align: center;
+      /* Apliquei a fonte poppins black 900 para todos os elementos */
+      font-family: 'Poppins', sans-serif;
+      font-weight: 900;
+      background-color: #fff;
+    }
+
+    .box {
+      display: inline-block;
+      color: #fff;
+      padding: 10px;
+      border-radius: 5px;
+      /* Adicionei uma sombra suave nas caixas */
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    #days {
+      background-color: #2d3436;
+    }
+
+    #hours {
+      background-color: #2d3436;
+    }
+
+    #minutes {
+      background-color: #2d3436;
+    }
+
+    h2 {
+      display: inline-block;
+      margin-right: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="counter">
+    <h2>
+      Tempo restante em 2023
+    </h2>
+
+    <h2 class="box" id="days"></h2>
+    <h2 class="box" id="hours"></h2>
+    <h2 class="box" id="minutes"></h2>
+
+  </div>
+
+  <script>
+    function CountDownTimer(date) {
+      left_days = document.getElementById("days");
+      left_hours = document.getElementById("hours");
+      left_minutes = document.getElementById("minutes");
+      end = new Date(date);
+      _second = 1000;
+      _minute = _second * 60;
+      _hour = _minute * 60;
+      _day = _hour * 24;
+    }
+
+    function showRemaining() {
+      now = new Date();
+      distance = end - now;
+      distance2 = new Date("01/01/2021 00:00 AM") - now
+      if (distance <= 0) {
+        clearInterval(timer)
+        document.getElementById("counter").innerHTML = "<h2>Nada! Acabou<h2>";
+        return
+      } else if (distance2 > 0) {
+        clearInterval(timer)
+        document.getElementById("counter").innerHTML = "<h2>2021 ainda não começou!</h2>";
+        return
+      }
+      days = Math.floor(distance / _day)
+      hours = Math.floor((distance % _day) / _hour)
+      minutes = Math.floor((distance % _hour) / _minute)
+      left_days.innerHTML = days + " dias "
+      left_hours.innerHTML = hours + " horas "
+      left_minutes.innerHTML = minutes + " mins "
+    }
+    timer = setInterval(showRemaining, 1)
+    CountDownTimer("01/01/2024 00:00 AM")
+  </script>
+</body>
+
+</html>
